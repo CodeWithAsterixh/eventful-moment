@@ -5,7 +5,7 @@ import DetailsPage from "@/pages/DetailsPage.vue";
 import EditPage from "@/pages/EditPage.vue";
 import HomePage from "@/pages/HomePage.vue";
 import NotFound from "@/pages/NotFound.vue";
-import { createMemoryHistory, createRouter } from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 
 
 const routes = [
@@ -16,10 +16,9 @@ const routes = [
   { path: "/moments/item/edit", name: "single-item-edit", component: EditPage },
   { path: "/add", name: "add-moment", component: AddNewEventPage },
   { path: "/:catchAll(.*)", name: "not-found", component: NotFound },
-
 ];
 
 export const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });

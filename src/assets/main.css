@@ -21,7 +21,7 @@
   font-weight: normal;
 }
 *{
-  @apply box-border
+  @apply box-border duration-300
 }
 button{
   @apply active:scale-95 duration-300 cursor-pointer

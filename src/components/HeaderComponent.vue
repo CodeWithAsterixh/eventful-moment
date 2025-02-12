@@ -65,7 +65,7 @@ const toggleOpen = () => {
       <button
       @click="logout"
         v-if="$state.isAuthenticated"
-        class="px-2 py-1 min-w-32 max-w-[70vw] duration-300 rounded-md w-full hover:bg-black/20"
+        class="px-2 py-1 min-w-32 max-w-[70vw] text-left duration-300 rounded-md w-full hover:bg-black/20"
       >
         Log out
       </button>

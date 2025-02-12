@@ -12,16 +12,14 @@ const handleSubmit = (form) => {
   const email = formData.get("email");
   const password = formData.get("password");
   const loggedIn = loginUser(email, password);
-  if(loggedIn){
+  if(!loggedIn.error){
     router.push("/")
-    toast.success("Logged in")
+    toast.success(`Welcome back, ${loggedIn.user.username}`)
+  }else{
+    toast.error(loggedIn.error)
   }
 };
-watch($state, ()=>{
-    if($state.error && !$state.loading){
-        toast.error($state.error)
-    }
-})
+
 </script>
 <template>
   <div

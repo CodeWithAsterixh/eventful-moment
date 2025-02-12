@@ -34,6 +34,14 @@ const useAuth = defineStore("userAuth", {
     loading: false,
   }),
   actions: {
+    /**
+     * @returns  {{error:false, user:{
+     *  username: string;
+     *  email:string;
+     * password:string;
+     * id:string;
+     * }|null}}
+     */
     loadUser() {
       this.loading = true;
       const token = localStorage.getItem("token");
@@ -47,14 +55,14 @@ const useAuth = defineStore("userAuth", {
         }
         this.isAuthenticated = true;
         this.user = user;
-        return user;
+        return { error: false, user };
       } else {
         this.error = "No user is logged in";
         this.isAuthenticated = false;
-        return null;
+        return { error: true, user: null };
       }
     },
-    
+
     loginUser(email, password) {
       this.loading = true;
       const res = users.login(email, password);
@@ -62,30 +70,56 @@ const useAuth = defineStore("userAuth", {
         this.error = res.error;
         this.loading = false;
         this.isAuthenticated = false;
-        return { success: true, error: res.error };
+        return res;
       }
       this.loading = false;
       this.error = false;
-      this.user.email = res.email;
-      this.user.username = res.username;
-      this.user.password = res.password;
+      this.user.email = res.user.email;
+      this.user.username = res.user.username;
+      this.user.password = res.user.password;
       this.isAuthenticated = true;
 
-      return { success: true, error: false };
+      return res;
     },
+    /**
+     *
+     * @param {string} email
+     * @param {string} password
+     * @param {string} fullname
+     * @returns {{ {
+     *error: string;
+     *user: null;
+     *} | {
+     *error: false;
+     *user: {
+     *email: string;
+     * password: string;
+     *  username: string;
+     *   id: string;
+     *};
+     *}}}
+     */
     registerUser(email, password, fullname) {
       this.loading = true;
       const res = users.register(email, password, fullname);
-      if (res.error) {
+      if (res.error && !res.user) {
         this.error = res.error;
         this.loading = false;
         this.isAuthenticated = false;
-        return;
+        return res;
       }
-      const loginError = this.loginUser(res.email, res.password);
-      this.error = loginError;
+      console.log(res)
+      const loginError = this.loginUser(res.user.email, res.user.password);
+      console.log(loginError);
+      this.error = loginError.error;
+      if (this.error) {
+        this.loading = false;
+        this.isAuthenticated = false;
+        return {error: this.error, user: null};
+      }
       this.loading = false;
-      this.isAuthenticated = !loginError;
+      this.isAuthenticated = !loginError.error;
+      return res;
     },
     logout() {
       users.logout();

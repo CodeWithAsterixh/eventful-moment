@@ -5,19 +5,17 @@ import FooterComponent from "./components/FooterComponent.vue";
 import HeaderComponent from "./components/HeaderComponent.vue";
 import useAuth from "./lib/feats/authSlice";
 
-const { loadUser, $state } = useAuth();
+const { loadUser } = useAuth();
 onMounted(() => {
-  loadUser();
-});
-const route = useRoute();
-const router = useRouter();
-watch($state, () => {
-  if (!$state.isAuthenticated && !$state.loading) {
+  const res = loadUser();
+  if(res.error){
     if (route.name !== "login" && route.name !== "register") {
       router.push("/auth/login");
     }
   }
 });
+const route = useRoute();
+const router = useRouter();
 </script>
 
 <template>

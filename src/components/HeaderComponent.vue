@@ -40,7 +40,7 @@ const toggleOpen = () => {
     ></button>
     <nav
       :class="[
-        'flex flex-col bg-primary duration-300 text-white p-2 rounded-bl-md absolute gap-2 min-[498px]:hidden right-0',
+        'flex flex-col bg-primary shadow-md duration-300 text-white p-2 rounded-bl-md absolute gap-2 min-[498px]:hidden right-0',
         isSmallMenuOpened
           ? 'top-[100%] z-10'
           : 'top-0 !p-0 -z-10 pointer-events-none opacity-0',

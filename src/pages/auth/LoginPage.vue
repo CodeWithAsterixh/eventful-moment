@@ -4,7 +4,7 @@ import { watch } from "vue";
 import { useRouter } from "vue-router";
 import { toast } from "vue3-toastify";
 
-const {loginUser,$state} = useAuth();
+const {loginUser} = useAuth();
 
 const router = useRouter();
 const handleSubmit = (form) => {

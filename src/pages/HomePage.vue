@@ -7,9 +7,9 @@ const { $state } = useAuth();
 
 <template>
  <div class="w-full flex flex-col items-center gap-20">
-    <div class="w-full text-black flex items-center justify-between">
+    <div class="w-full text-black flex flex-wrap gap-3 items-center justify-between">
     <!-- greetings -->
-    <div class="w-full">
+    <div class="w-full basis-[300px]">
       <h2 class="text-2xl">Welcome {{ $state.user.username }},</h2>
       <p>Here are items in your eventful moment bucket.</p>
     </div>

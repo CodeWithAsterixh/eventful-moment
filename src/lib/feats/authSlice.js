@@ -47,15 +47,17 @@ const useAuth = defineStore("userAuth", {
       const token = localStorage.getItem("token");
       if (token) {
         this.loading = false;
-        const user = users.getUserById(token);
-        if (user.error) {
+        const res = users.getUserById(token);
+        if (res.error) {
           localStorage.removeItem("token");
           this.isAuthenticated = false;
-          return (this.error = user.error);
+          this.error = res.error
+          return res;
         }
         this.isAuthenticated = true;
-        this.user = user;
-        return { error: false, user };
+        this.user = res.user;
+        this.error = res.error;
+        return res;
       } else {
         this.error = "No user is logged in";
         this.isAuthenticated = false;
@@ -74,9 +76,7 @@ const useAuth = defineStore("userAuth", {
       }
       this.loading = false;
       this.error = false;
-      this.user.email = res.user.email;
-      this.user.username = res.user.username;
-      this.user.password = res.user.password;
+      this.user = res.user
       this.isAuthenticated = true;
 
       return res;

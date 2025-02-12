@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="w-full text-black shadow-[0px_3px_6px]  shadow-[#00000029] p-4 hover:bg-others duration-300 rounded-xs cursor-pointer">
+  <div class="w-full text-black shadow-[0px_3px_6px]  shadow-[#00000029] p-4 hover:!bg-others duration-300 rounded-xs cursor-pointer">
     <!-- greetings -->
     <div class="w-full flex flex-col gap-3">
       <h4 class="text-sm !font-semibold">

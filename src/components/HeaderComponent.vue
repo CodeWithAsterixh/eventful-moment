@@ -15,13 +15,13 @@ const toggleOpen = () => {
   <header
     class="bg-primary sticky top-0 w-full text-white py-4 px-4 sm:px-8 flex items-center justify-between"
   >
-    <RouterLink to="/" class="italic !bg-transparent !font-semibold">Eventful moments</RouterLink>
+    <h1 class="italic !p-0 !bg-transparent !font-semibold">Eventful moments</h1>
 
     <nav class="hidden min-[498px]:flex gap-2 min-[498px]:gap-6 duration-300 *:p-2 items-center">
       <RouterLink v-if="!$state.isAuthenticated" to="/auth/login"> Login </RouterLink>
       <RouterLink v-if="!$state.isAuthenticated" to="/auth/register"> Register </RouterLink>
       <button @click="logout" v-if="$state.isAuthenticated"> Log out </button>
-      <RouterLink v-if="$state.isAuthenticated" to="/add"> My Buckets </RouterLink>
+      <RouterLink v-if="$state.isAuthenticated" to="/"> My Buckets </RouterLink>
     </nav>
 
     <!--for really small screens-->
@@ -72,7 +72,7 @@ const toggleOpen = () => {
       <RouterLink
       v-if="$state.isAuthenticated"
 
-        to="/add"
+        to="/"
         class="px-2 py-1 min-w-32 max-w-[70vw] duration-300 rounded-md w-full hover:bg-black/20"
       >
         My Bucket

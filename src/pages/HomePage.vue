@@ -13,11 +13,12 @@ const { $state } = useAuth();
       <h2 class="text-2xl">Welcome {{ $state.user.username }},</h2>
       <p>Here are items in your eventful moment bucket.</p>
     </div>
-    <button
+    <RouterLink
+      to="/add"
       class="px-10 py-3 rounded-xl shrink-0 text-white bg-tertiary border-accent border-[1px]"
     >
       Add item
-    </button>
+    </RouterLink>
   </div>
   <div class="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
     <BucketCardComponent v-for="i in Array.from({ length: 4 })" :key="i" />

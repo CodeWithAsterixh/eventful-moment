@@ -1,5 +1,5 @@
 import AddNewEventPage from "@/pages/AddNewEventPage.vue";
-import LoginPage from "@/pages/auth/loginPage.vue";
+import LoginPage from "@/pages/auth/LoginPage.vue";
 import RegisterPage from "@/pages/auth/RegisterPage.vue";
 import DetailsPage from "@/pages/DetailsPage.vue";
 import EditPage from "@/pages/EditPage.vue";
